@@ -38,3 +38,35 @@ document.querySelectorAll('[data-choice]').forEach((choice) => {
     result.classList.add('success');
   });
 });
+
+const aiQuestion = document.querySelector('#aiQuestion');
+const askAI = document.querySelector('#askAI');
+const aiAnswer = document.querySelector('#aiAnswer');
+
+askAI.addEventListener('click', async () => {
+  const question = aiQuestion.value.trim();
+  if (!question) {
+    aiAnswer.textContent = '先写下一个问题，再让它出发。';
+    aiAnswer.className = 'ai-answer error';
+    return;
+  }
+  askAI.disabled = true;
+  aiAnswer.textContent = 'AI 正在整理你的问题…';
+  aiAnswer.className = 'ai-answer';
+  try {
+    const response = await fetch('/api/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: question }),
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'AI 暂时没有回答。');
+    aiAnswer.textContent = data.answer;
+    aiAnswer.className = 'ai-answer ready';
+  } catch (error) {
+    aiAnswer.textContent = error.message;
+    aiAnswer.className = 'ai-answer error';
+  } finally {
+    askAI.disabled = false;
+  }
+});

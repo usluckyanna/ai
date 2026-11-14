@@ -7,6 +7,7 @@ const PORT = Number(process.env.PORT || 3000);
 const MODEL = 'gpt-4o-mini';
 
 function readEnvKey() {
+  if (process.env.OPENAI_API_KEY) return process.env.OPENAI_API_KEY.trim();
   const envPath = path.join(ROOT, '.env');
   if (!fs.existsSync(envPath)) return '';
   const line = fs.readFileSync(envPath, 'utf8').split(/\r?\n/).find((item) => item.startsWith('OPENAI_API_KEY='));
