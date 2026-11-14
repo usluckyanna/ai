@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="星轨课堂：用轨道与航线计算，把每一门课连接到太空。" />
+    <title>星轨课堂 · 把每一门课送上轨道</title>
+    <link rel="stylesheet" href="public/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="星轨课堂首页"><span class="brand-mark" aria-hidden="true">✦</span><span><strong>星轨课堂</strong><small>SPACE PATHWAYS</small></span></a>
+      <nav class="nav" aria-label="主要导航"><a href="#calculator">轨道计算</a><a href="#steps">三步拆解</a><a href="#activity">互动活动</a></nav>
+      <a class="header-cta" href="#calculator">开始探索 <span>↗</span></a>
+    </header>
+    <main id="top">
+      <section class="hero section-wrap"><div class="hero-copy"><p class="eyebrow"><span></span> 为人民的利益 · 跨学科学习</p><h1>把每一门课，<em>送上轨道。</em></h1><p class="hero-lede">从一道数学题，到一条真正的航线。我们用太空作为共同语言，让知识更容易被看见、被理解，也更值得一起尝试。</p><div class="hero-actions"><a class="button button-primary" href="#calculator">试算一条轨道 <span>↓</span></a><a class="text-link" href="#steps">看看怎么拆解 <span>→</span></a></div><div class="hero-note"><span class="note-icon">◎</span> 今天只需要尝试一件事：提出一个好问题。</div></div><div class="orbit-art" aria-label="围绕地球运行的卫星示意图" role="img"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="earth"><span>地球</span></div><div class="satellite satellite-one">✦</div><div class="satellite satellite-two">·</div><div class="art-label label-top">轨道<br /><strong>不断靠近</strong></div><div class="art-label label-bottom">CURIOSITY<br /><strong>好奇心</strong></div></div></section>
+      <section class="signal-strip" aria-label="学习方式"><div><strong>01</strong><span>先看见问题</span></div><div><strong>02</strong><span>再拆成小步</span></div><div><strong>03</strong><span>最后亲手试试</span></div><p>知识不必一次飞得很远。</p></section>
+      <section class="section-wrap calculator-section" id="calculator"><div class="section-heading"><p class="eyebrow"><span></span> 01 / 轨道与航线计算</p><h2>换一个高度，<br /><em>会发生什么？</em></h2><p>调整卫星离地面的高度，观察它的速度和绕地球一圈所需的时间。数字来自圆轨道的简化模型，足够用来开始提问。</p></div><div class="calculator-card"><div class="calculator-input"><div class="input-topline"><label for="altitude">卫星高度</label><output id="altitudeOutput">550 km</output></div><input id="altitude" type="range" min="200" max="2000" value="550" step="50" /><div class="range-labels"><span>低轨 200 km</span><span>高一点 2,000 km</span></div><div class="formula-note">地球半径 6,371 km · 只看主要变量</div></div><div class="readouts" aria-live="polite"><div class="readout"><span>轨道速度</span><strong id="speedOutput">7.59</strong><small>km/s</small></div><div class="readout"><span>绕行一圈</span><strong id="periodOutput">95</strong><small>分钟</small></div><div class="readout readout-accent"><span>这意味着</span><strong id="meaningOutput">快于一节课</strong><small>你的新发现</small></div></div><div class="calculator-footer"><span class="mini-orbit">◌</span> 轨道不是一条直线，而是速度、距离和时间的关系。 <button id="resetCalculator" class="small-button" type="button">重置</button></div></div></section>
+      <section class="section-wrap steps-section" id="steps"><div class="section-heading compact"><p class="eyebrow"><span></span> 02 / 每个科目的课程</p><h2>把大问题，<em>拆成小步骤。</em></h2></div><div class="steps-grid"><article class="step-card"><span class="step-number">01</span><div class="step-symbol">?</div><h3>提出一个问题</h3><p>“如果卫星更高，它还会更快吗？”从好奇心开始，不急着找答案。</p></article><article class="step-card step-card-highlight"><span class="step-number">02</span><div class="step-symbol">↗</div><h3>找到三个变量</h3><p>距离、速度、时间。把复杂的航线，变成可以观察的关系。</p></article><article class="step-card"><span class="step-number">03</span><div class="step-symbol">✎</div><h3>讲给别人听</h3><p>画一张图，写一句话，或用自己的方式说清楚你看见了什么。</p></article></div><div class="try-banner"><div><span class="try-label">需要尝试的一件事</span><h3>拿一张纸，画出你想去的地方。</h3></div><p>不用画得完美。标出“出发点”“转弯处”和“我还想知道什么”，你的第一条航线就出现了。</p><span class="try-arrow" aria-hidden="true">↗</span></div></section>
+      <section class="activity-section" id="activity"><div class="section-wrap activity-layout"><div class="activity-intro"><p class="eyebrow eyebrow-light"><span></span> 03 / 结束每个科目的互动活动</p><h2>语文与<br /><em>人文社科类</em></h2><p>一条航线不只有数字，也有它要去哪里、为什么出发，以及谁会从中受益。</p><div class="activity-tag">MISSION 01 <span>叙事 · 选择 · 连接</span></div></div><div class="mission-card"><div class="mission-topline"><span>任务卡 · 给一颗卫星写信</span><span>01 / 01</span></div><h3>如果它能听见，你最想告诉它什么？</h3><p class="mission-prompt">请选择最能让一条航线“有意义”的开头：</p><div class="choices" role="group" aria-label="选择一条开头"><button type="button" data-choice="a">A&nbsp; “请记录你看见的每一片云。”</button><button type="button" data-choice="b">B&nbsp; “你为什么要出发，又要为谁带回消息？”</button><button type="button" data-choice="c">C&nbsp; “请计算你绕行一圈需要多久。”</button></div><div id="missionResult" class="mission-result" aria-live="polite">选择一个开头，看看它把故事带向哪里。</div></div></div></section>
+    </main>
+    <footer class="site-footer section-wrap"><span>星轨课堂 / SPACE PATHWAYS</span><span>让知识为更多人打开一扇窗。</span><a href="#top">回到顶部 ↑</a></footer>
+    <script src="public/app.js"></script>
+  </body>
+</html>

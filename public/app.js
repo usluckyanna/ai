@@ -1,52 +1,40 @@
-const examples = {
-  'field-trip': 'Reminder: Our class visits the City Science Museum on Thursday, October 15. Please return the permission form by Monday. Bring a packed lunch and wear comfortable shoes. Meet in Room 204 at 8:15 AM.',
-  homework: 'Homework: Read pages 42–48. Write three questions about the main character and bring your notes to class on Friday. You may use the vocabulary list, but write the answers in your own words.',
-  multilingual: 'Families: Please review the attached progress update before our family meeting next week. If you need an interpreter or have questions about the schedule, contact the school office.',
+const altitude = document.querySelector('#altitude');
+const altitudeOutput = document.querySelector('#altitudeOutput');
+const speedOutput = document.querySelector('#speedOutput');
+const periodOutput = document.querySelector('#periodOutput');
+const meaningOutput = document.querySelector('#meaningOutput');
+const resetButton = document.querySelector('#resetCalculator');
+
+const EARTH_RADIUS = 6371;
+const GRAVITATIONAL_PARAMETER = 398600;
+
+function updateOrbit() {
+  const height = Number(altitude.value);
+  const radius = EARTH_RADIUS + height;
+  const speed = Math.sqrt(GRAVITATIONAL_PARAMETER / radius);
+  const period = (2 * Math.PI * Math.sqrt((radius ** 3) / GRAVITATIONAL_PARAMETER)) / 60;
+  altitudeOutput.textContent = `${height.toLocaleString('zh-CN')} km`;
+  speedOutput.textContent = speed.toFixed(2);
+  periodOutput.textContent = Math.round(period);
+  meaningOutput.textContent = period < 100 ? '快于一节课' : period < 130 ? '大约一节课' : '长于一节课';
+}
+
+altitude.addEventListener('input', updateOrbit);
+resetButton.addEventListener('click', () => { altitude.value = 550; updateOrbit(); });
+updateOrbit();
+
+const missionMessages = {
+  a: '你选择了“观察”。这会把故事带向写作：从一朵云开始，练习用细节让远方变得具体。',
+  b: '你选择了“意义”。很棒！人文问题会追问：谁在出发？谁会收到消息？技术如何服务更多人？',
+  c: '你选择了“测量”。数字是很好的起点；下一步，可以问问这些数字会怎样改变一个人的决定。',
 };
 
-const message = document.querySelector('#message');
-const select = document.querySelector('#exampleSelect');
-const button = document.querySelector('#sendButton');
-const status = document.querySelector('#status');
-const answer = document.querySelector('#answer');
-const themeToggle = document.querySelector('#themeToggle');
-const STORAGE_KEY = 'ai-project-data-v1';
-
-const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-if (saved.lastMessage) message.value = saved.lastMessage;
-if (saved.darkMode) document.body.classList.add('dark-mode');
-const updateThemeButton = () => {
-  const dark = document.body.classList.contains('dark-mode');
-  themeToggle.setAttribute('aria-pressed', String(dark));
-  themeToggle.setAttribute('aria-label', dark ? 'Turn off dark mode' : 'Turn on dark mode');
-  themeToggle.querySelector('span').textContent = dark ? 'Light mode' : 'Dark mode';
-};
-updateThemeButton();
-themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  const current = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...current, darkMode: document.body.classList.contains('dark-mode') }));
-  updateThemeButton();
-});
-select.addEventListener('change', () => { if (examples[select.value]) message.value = examples[select.value]; });
-
-button.addEventListener('click', async () => {
-  const text = message.value.trim();
-  if (!text) { status.textContent = 'Paste a message first.'; status.className = 'status error'; return; }
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ lastMessage: text, lastUsedAt: new Date().toISOString() }));
-  button.disabled = true;
-  status.textContent = 'Thinking…';
-  status.className = 'status thinking';
-  answer.textContent = '';
-  try {
-    const response = await fetch('/api/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text }) });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'The AI could not reply.');
-    status.textContent = 'Ready — check the original notice too.';
-    status.className = 'status';
-    answer.textContent = data.answer;
-  } catch (error) {
-    status.textContent = error.message.includes('key') ? 'Please check the OpenAI key in your .env file.' : 'The AI could not reply. Please check the key and your internet connection.';
-    status.className = 'status error';
-  } finally { button.disabled = false; }
+document.querySelectorAll('[data-choice]').forEach((choice) => {
+  choice.addEventListener('click', () => {
+    document.querySelectorAll('[data-choice]').forEach((button) => button.classList.remove('selected'));
+    choice.classList.add('selected');
+    const result = document.querySelector('#missionResult');
+    result.textContent = missionMessages[choice.dataset.choice];
+    result.classList.add('success');
+  });
 });
