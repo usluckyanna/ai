@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ai — Clear school messages</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Presidential SI Challenge · Version 1</p>
+          <h1>Make school messages clearer.</h1>
+          <p class="subtitle">Translate, explain, and organize a teacher’s notice in one short answer.</p>
+        </div>
+        <div class="hero-actions">
+          <button id="themeToggle" class="theme-toggle" type="button" aria-label="Turn on dark mode" aria-pressed="false">◐ <span>Dark mode</span></button>
+          <div class="ai-mark" aria-label="AI">ai</div>
+        </div>
+      </header>
+
+      <section class="safety" aria-label="Safety reminder">
+        <strong>Safety reminder</strong>
+        <span>Do not enter real names, student IDs, addresses, grades, or private family information. Check important details with the original notice or your teacher.</span>
+      </section>
+
+      <section class="workspace">
+        <div class="card input-card">
+          <div class="section-title"><span>01</span><h2>Paste a school message</h2></div>
+          <select id="exampleSelect" aria-label="Choose a fictional example">
+            <option value="">Choose a fictional example…</option>
+            <option value="field-trip">Field trip notice</option>
+            <option value="homework">Homework instructions</option>
+            <option value="multilingual">Multilingual family notice</option>
+          </select>
+          <textarea id="message" maxlength="12000" placeholder="Paste a teacher notice or homework instructions here…"></textarea>
+          <button id="sendButton">Explain this message <span>→</span></button>
+          <p class="microcopy">One request happens only when you press this button.</p>
+        </div>
+
+        <div class="card result-card">
+          <div class="section-title"><span>02</span><h2>Clearer version</h2></div>
+          <div id="status" class="status" role="status">Your explanation will appear here.</div>
+          <div id="answer" class="answer" aria-live="polite"></div>
+          <div class="result-note">AI can make mistakes. Confirm dates, rules, and required materials with your teacher.</div>
+        </div>
+      </section>
+
+      <section class="why-card">
+        <div><p class="eyebrow">Why this is different</p><h2>Not just a word-for-word translation.</h2></div>
+        <p>ai turns one school message into a translation, a plain-language meaning, a checklist of actions, and questions the student can ask. That helps students know what to do next.</p>
+      </section>
+
+      <footer>Fictional examples only · Saved in this browser on this computer</footer>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
